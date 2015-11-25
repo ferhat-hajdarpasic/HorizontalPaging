@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="action_settings">Settings</string>
+    <string name="wifi_section">WiFi</string>
+    <string name="upload_section">Upload</string>
+    <string name="download_section">Download</string>
+
+</resources>
