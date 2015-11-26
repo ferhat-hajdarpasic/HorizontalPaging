@@ -28,7 +28,7 @@ public class DummySectionFragment extends Fragment {
      * fragment.
      */
     public static final String ARG_SECTION_NUMBER = "section_number";
-    WiFiRecyclerViewAdapter wiFiRecyclerViewAdapter;
+    public WiFiRecyclerViewAdapter wiFiRecyclerViewAdapter;
 
     public DummySectionFragment() {
     }
@@ -38,11 +38,10 @@ public class DummySectionFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_main_dummy, container, false);
         RecyclerView recyclerView = (RecyclerView)rootView.findViewById(R.id.WiFiList);
-        WiFiRecyclerViewAdapter adapter =  (WiFiRecyclerViewAdapter)recyclerView.getAdapter();
         final int sectionNumber = getArguments().getInt(ARG_SECTION_NUMBER);
 
         List<DummyContent.DummyItem> items = new ArrayList<DummyContent.DummyItem>();
-        for(int i = 0; i < 15; i++) {
+        for(int i = 0; i < 1; i++) {
             items.add(new DummyContent.DummyItem("id" + i, "content"+i, "details"+i));
         }
         WiFiItemFragment.OnListFragmentInteractionListener mListener = new WiFiItemFragment.OnListFragmentInteractionListener() {
@@ -65,6 +64,11 @@ public class DummySectionFragment extends Fragment {
         //dummyTextView.setText("HAJDARPASIC " + Integer.toString(sectionNumber));
 
         return view;
+    }
+
+    public void refreshWiFiNetworks(List<DummyContent.DummyItem> wiFiNetworks) {
+        wiFiRecyclerViewAdapter.setItems(wiFiNetworks);
+        wiFiRecyclerViewAdapter.notifyDataSetChanged();
     }
 }
 

@@ -34,7 +34,7 @@ public class DummyContent {
 
     private static void addItem(DummyItem item) {
         ITEMS.add(item);
-        ITEM_MAP.put(item.id, item);
+        ITEM_MAP.put(item.bssid, item);
     }
 
     private static DummyItem createDummyItem(int position) {
@@ -54,19 +54,19 @@ public class DummyContent {
      * A dummy item representing a piece of content.
      */
     public static class DummyItem {
-        public final String id;
-        public final String content;
-        public final String details;
+        public String bssid;
+        public String ssid;
+        public String capabilities;
 
-        public DummyItem(String id, String content, String details) {
-            this.id = id;
-            this.content = content;
-            this.details = details;
+        public DummyItem(String bssid, String ssid, String capabilities) {
+            this.bssid = bssid;
+            this.ssid = ssid;
+            this.capabilities = capabilities;
         }
 
         @Override
         public String toString() {
-            return content;
+            return ssid;
         }
     }
 }

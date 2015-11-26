@@ -12,6 +12,9 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 
+import com.example.android.horizontalpaging.dummy.DummyContent;
+
+import java.util.List;
 import java.util.Locale;
 
 /**
@@ -21,6 +24,7 @@ import java.util.Locale;
 public class SectionsPagerAdapter extends FragmentPagerAdapter {
     // END_INCLUDE (fragment_pager_adapter)
     private Resources resources;
+    private DummySectionFragment wiFiFragment = null;
 
     public SectionsPagerAdapter(FragmentManager fm, Resources resources) {
         super(fm);
@@ -40,7 +44,21 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
         // getItem is called to instantiate the fragment for the given page.
         // Return a DummySectionFragment (defined as a static inner class
         // below) with the page number as its lone argument.
-        Fragment fragment = new DummySectionFragment();
+        Fragment fragment = null;
+        switch (position) {
+            case 0:
+                fragment = wiFiFragment = new DummySectionFragment();
+                break;
+            case 1:
+                fragment = new DummySectionFragment();
+                break;
+            case 2:
+                fragment = new DummySectionFragment();
+                break;
+            default:
+                fragment = new DummySectionFragment();
+                break;
+        }
         Bundle args = new Bundle();
         args.putInt(DummySectionFragment.ARG_SECTION_NUMBER, position + 1);
         fragment.setArguments(args);
@@ -81,6 +99,10 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
                 return resources.getString(R.string.download_section).toUpperCase(l);
         }
         return null;
+    }
+
+    public void refreshWiFiList(List<DummyContent.DummyItem> wiFiNetworks) {
+        wiFiFragment.refreshWiFiNetworks(wiFiNetworks);
     }
     // END_INCLUDE (fragment_pager_adapter_getpagetitle)
 }

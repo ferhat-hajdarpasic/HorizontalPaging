@@ -19,7 +19,6 @@ import java.util.List;
 public class MainActivity extends FragmentActivity implements ActionBar.TabListener {
     SectionsPagerAdapter mSectionsPagerAdapter;
     ViewPager mViewPager;
-    WifiManager mWifiManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +42,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
                             .setTabListener(this));
         }
 
-        BroadcastReceiver mWifiScanReceiver = new WiFiBroadcastReceiver(this);
+        BroadcastReceiver mWifiScanReceiver = new WiFiBroadcastReceiver(this, mSectionsPagerAdapter);
     }
 
     @Override
