@@ -4,6 +4,8 @@ package com.example.android.horizontalpaging;
  * Created by ferhat on 24/11/2015.
  */
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
@@ -47,8 +49,8 @@ public class DummySectionFragment extends Fragment {
         WiFiItemFragment.OnListFragmentInteractionListener mListener = new WiFiItemFragment.OnListFragmentInteractionListener() {
             @Override
             public void onListFragmentInteraction(DummyContent.DummyItem item) {
-                Log.d("", "onListFragmentInteraction()");
-
+            Log.d("", "onListFragmentInteraction()");
+            wifiItemClicked(getView(), item);
             }
         };
 
@@ -69,6 +71,12 @@ public class DummySectionFragment extends Fragment {
     public void refreshWiFiNetworks(List<DummyContent.DummyItem> wiFiNetworks) {
         wiFiRecyclerViewAdapter.setItems(wiFiNetworks);
         wiFiRecyclerViewAdapter.notifyDataSetChanged();
+    }
+    public void wifiItemClicked(View v, DummyContent.DummyItem dummyItem ) {
+        final Intent intent = new Intent(v.getContext(), TcpCommunicationIntentService.class);
+        intent.setData(Uri.EMPTY);
+        intent.putExtra("SSID", dummyItem.ssid);
+        v.getContext().startService(intent);
     }
 }
 
